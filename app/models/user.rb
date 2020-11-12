@@ -14,4 +14,15 @@
 #
 class User < ApplicationRecord
   has_many :articles, dependent: :destroy
+
+  has_secure_password
+
+  validates :username, :email, presence: true
+  validates :username, :email, uniqueness: true
+  validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :password, confirmation: true, length: { :minimum => 6 }, if: :should_validate?
+
+  def should_validate?
+    (new_record? || password.present?)
+  end
 end
