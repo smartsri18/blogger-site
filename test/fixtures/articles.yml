@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id             :integer          not null, primary key
+#  user_id        :integer          not null
+#  title          :string           not null
+#  content        :text             not null
+#  category       :string           not null
+#  published_date :datetime         not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+one:
+  user: one
+  title: MyString
+  content: MyText
+  category: MyString
+  published_date: 2020-11-12 13:38:46
+
+two:
+  user: two
+  title: MyString
+  content: MyText
+  category: MyString
+  published_date: 2020-11-12 13:38:46
