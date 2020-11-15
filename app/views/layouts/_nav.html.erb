@@ -14,11 +14,11 @@
         <%= link_to 'About us', about_us_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign In</a>
+        <%= link_to 'Sign In', new_session_path(:user), class: "nav-link" %>
       </li>
       <li class="nav-item">
         <button>
-          <%= link_to 'Get Started', new_user_registration_path, class: "nav-link" %>
+          <%= link_to 'Get Started', new_registration_path(:user), class: "nav-link" %>
         </button>
       </li>
       <li class="nav-item dropdown">
