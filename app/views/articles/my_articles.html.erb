@@ -9,20 +9,24 @@
 <% else%>
   <div class="row">
     <div class="col-md-8">
-      <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
+      <h1 class="my-4">
+      <% if @user_profile_flag %>
+        <%= @user.username %>'s Articles
+      <% else %>
+        My Articles's
+      <%end%>
+        <%# <small>Secondary Text</small> %>
       </h1>
       <% @articles.each do |article|%>
         <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <img class="card-img-top" src="http://placehold.it/750x200" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title"><%= article.title%></h2>
             <p class="card-text"><%= truncate(article.content, length: 250)%></p>
             <%= link_to 'Read more', article_path(article.id), class: "btn btn-primary"%>
           </div>
           <div class="card-footer text-muted">
-            Posted on <%= article.created_at.strftime("%B %d, %Y")%> by
-            <a href="#"><%= article.user.username%></a>
+            Posted on <%= article.created_at.strftime("%B %d, %Y")%> 
           </div>
         </div>
       <% end%>

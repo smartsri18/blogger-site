@@ -3,7 +3,7 @@
     <h1 class="mt-4"><%= @article.title %></h1>
     <p class="lead">
       by
-      <a href="#"><%= @article.user.username %></a>
+      <%= link_to @article.user.username , user_profile_path(@article.user.username) %>
     </p>
     <hr>
     <p>Posted on <%= @article.created_at.strftime("%B %d, %Y") %></p>

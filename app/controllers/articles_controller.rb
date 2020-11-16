@@ -64,6 +64,7 @@ class ArticlesController < ApplicationController
 
   def my_articles
     @articles = current_user.articles
+    @user_profile_flag = false
   end
 
   private
