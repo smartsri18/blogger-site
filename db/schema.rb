@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_103152) do
+ActiveRecord::Schema.define(version: 2020_11_15_184440) do
 
   create_table "articles", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.string "category", null: false
-    t.datetime "published_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
@@ -26,10 +25,8 @@ ActiveRecord::Schema.define(version: 2020_11_12_103152) do
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
-    t.string "password_digest", null: false
-    t.string "password_reset_token"
     t.string "image_url"
-    t.integer "user_type", null: false
+    t.integer "user_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
