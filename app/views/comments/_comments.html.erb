@@ -2,16 +2,18 @@
 <% @comments.each do |comment|%>
   <div class="media mb-4">
     <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-    <div class="media-body">
-      <h5 class="mt-0"><%= comment.user.username%>
-        <div>
-        <%= link_to 'Edit', edit_article_comment_path(comment.article, comment) %>
-        <%= link_to 'Destroy', article_comment_path(comment), method: :delete %>
-        <small class="float-right"><%= time_ago_in_words(comment.created_at)%>
-        </small>
-        </div>
+    <div class="media-body card py-2 px-3">
+      <h5 class="my-0"><%= comment.user.username%>
+      <% if current_user == comment.user%>
+        <span class="float-right">
+          <%= link_to ('<i class="fa fa-pencil-square p-1"></i>').html_safe, edit_article_comment_path(comment.article, comment, anchor: "edit_comment_#{comment.id}") %>
+          <%= link_to ('<i class="fa fa-trash p-1"></i>').html_safe, article_comment_path(comment), method: :delete %>
+        </span>
+      <% end %>
       </h5>
-      <%= comment.message%>
+      <small class="text-right"><%= time_ago_in_words(comment.created_at)%></small>
+      <hr class="margin-adjust">
+      <p><%= comment.message%></p>
     </div>
   </div>
 <%end%>

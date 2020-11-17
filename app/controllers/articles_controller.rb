@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @comments = @article.comments.where.not(created_at: nil)
+    @comment = @article.comments.new
   end
 
   # GET /articles/new
