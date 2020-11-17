@@ -1,17 +1,23 @@
 <% if @comments.present? %>
 <% @comments.each do |comment|%>
   <div class="media mb-4">
-    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
     <div class="media-body card py-2 px-3">
-      <h5 class="my-0"><%= comment.user.username%>
-      <% if current_user == comment.user%>
-        <span class="float-right">
-          <%= link_to ('<i class="fa fa-pencil-square p-1"></i>').html_safe, edit_article_comment_path(comment.article, comment, anchor: "edit_comment_#{comment.id}") %>
-          <%= link_to ('<i class="fa fa-trash p-1"></i>').html_safe, article_comment_path(comment), method: :delete %>
-        </span>
-      <% end %>
-      </h5>
-      <small class="text-right"><%= time_ago_in_words(comment.created_at)%></small>
+    <div class="row">
+      <div class="col-sm-2">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      </div>
+      <div class="col-sm-10">
+        <h5 class="my-0"><%= comment.user.username%>
+        <% if current_user == comment.user%>
+          <span class="float-right">
+            <%= link_to ('<i class="fa fa-pencil-square p-1"></i>').html_safe, edit_article_comment_path(comment.article, comment, anchor: "edit_comment_#{comment.id}") %>
+            <%= link_to ('<i class="fa fa-trash p-1"></i>').html_safe, article_comment_path(comment.article, comment), method: :delete %>
+          </span>
+        <% end %>
+        </h5>
+        <small class="text-right"><%= time_ago_in_words(comment.created_at)%></small>
+      </div>
+    </div>
       <hr class="margin-adjust">
       <p><%= comment.message%></p>
     </div>
