@@ -1,0 +1,26 @@
+
+<%= simple_form_for([@article, @article.comments.new]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="card my-4">
+      <h5 class="card-header">Leave a Comment:</h5>
+      <div class="card-body">
+        <div class="form-inputs">
+          <%= f.input :message,
+                      required: true,
+                      autofocus: true,
+                      class: "form-control",
+                      rows: "3",
+                      as: :text%>
+          </div>
+
+        <div class="form-actions">
+          <%= f.button :submit,
+                       class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+
+  
+<% end %>

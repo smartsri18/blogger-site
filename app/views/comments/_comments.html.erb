@@ -1,0 +1,20 @@
+<% if @comments.present? %>
+<% @comments.each do |comment|%>
+  <div class="media mb-4">
+    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+    <div class="media-body">
+      <h5 class="mt-0"><%= comment.user.username%>
+        <div>
+        <%= link_to 'Edit', edit_article_comment_path(comment.article, comment) %>
+        <%= link_to 'Destroy', article_comment_path(comment), method: :delete %>
+        <small class="float-right"><%= time_ago_in_words(comment.created_at)%>
+        </small>
+        </div>
+      </h5>
+      <%= comment.message%>
+    </div>
+  </div>
+<%end%>
+<% else %>
+<h1>No comments</h1>
+<% end%>

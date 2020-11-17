@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root :to => 'pages#index'
   get '/about_us', to: 'pages#about'
   get '/profiles/:username', to: 'pages#user_profile', as: :user_profile
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
   match 'my_articles' => 'articles#my_articles', as: :user_root, :via => [:get, :post]
 end
