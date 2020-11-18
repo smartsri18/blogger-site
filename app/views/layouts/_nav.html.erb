@@ -18,10 +18,13 @@
           <%= link_to 'Create Article', new_article_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Hello <%= current_user.username %>
+        <% if current_user.avatar.attached?%>
+          <%= image_tag current_user.avatar, class: "d-flex mr-3 rounded-circle", style: 'width:40px;height:40px;', id: "navbarDropdown", data: {toggle: "dropdown"}, aria: {haspopup: true, expanded: false }%>
+        <%else%>
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%end%>            
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to 'My Articles', user_root_path, class: "dropdown-item" %>
             <%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>

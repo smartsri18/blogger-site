@@ -4,6 +4,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :avatar,
+                as: :file,
+                required: true,
+                image_preview: true %>
+    <div>
+      <img id="your_preview_id">
+    </div>
     <%= f.input :username,
                 required: true,
                 autofocus: true%>
@@ -26,3 +33,23 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script>
+function showImage(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#your_preview_id')
+        .attr('src', e.target.result)
+        .width(150)
+        .height(200);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+$('#user_avatar').on('change', function() {
+    showImage(this);
+})
+</script>

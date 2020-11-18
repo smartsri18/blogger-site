@@ -21,7 +21,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   # has_secure_password
-
+  has_one_attached :avatar
+  
   validates :username, :email, presence: true
   validates :username, :email, uniqueness: true
   validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

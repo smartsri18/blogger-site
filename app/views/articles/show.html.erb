@@ -1,10 +1,21 @@
 <div class="row">
   <div class="col-lg-8">
-    <h1 class="mt-4"><%= @article.title %></h1>
-    <p class="lead">
-      by
-      <%= link_to @article.user.username , user_profile_path(@article.user.username) %>
-    </p>
+    <div class="row">
+      <div class="col-lg-2">
+        <% if @article.user.avatar.attached?%>
+          <%= image_tag @article.user.avatar, class: "rounded-circle mt-4", style: 'width:100px;height:100px;', id: "navbarDropdown", data: {toggle: "dropdown"}, aria: {haspopup: true, expanded: false }%>
+        <%else%>
+          <img class="rounded-circle mt-4" src="http://placehold.it/100x100" alt="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%end%>
+      </div>
+      <div class="col-lg-10">
+        <h1 class="mt-4"><%= @article.title %></h1>
+        <p class="lead">
+          by
+          <%= link_to @article.user.username , user_profile_path(@article.user.username) %>
+        </p>
+      </div>
+    </div>
     <hr>
     <p>Posted on <%= @article.created_at.strftime("%B %d, %Y") %></p>
     <hr>
