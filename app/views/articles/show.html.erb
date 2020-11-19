@@ -19,7 +19,11 @@
     <hr>
     <p>Posted on <%= @article.created_at.strftime("%B %d, %Y") %></p>
     <hr>
-    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+    <% if @article.photoblog.attached? %>
+      <%= image_tag @article.photoblog, class: "img-fluid rounded", style: 'width:900px;height:300px;'%>
+    <% else %>
+      <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+    <% end %>
     <hr>
     <p class="lead"><%= @article.content %></p>
     <hr>

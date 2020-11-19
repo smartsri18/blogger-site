@@ -9,7 +9,7 @@
                 required: true,
                 image_preview: true %>
     <div>
-      <img id="your_preview_id">
+      <img id="preview_user_avatar">
     </div>
     <%= f.input :username,
                 required: true,
@@ -40,7 +40,7 @@ function showImage(input) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#your_preview_id')
+      $('#preview_user_avatar')
         .attr('src', e.target.result)
         .width(150)
         .height(200);

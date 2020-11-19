@@ -14,6 +14,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_many :comments
+  has_one_attached :photoblog
   
   validates :title, :content, :category, presence: true
 end
