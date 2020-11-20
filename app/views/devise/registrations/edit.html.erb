@@ -1,8 +1,8 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="mt-5">Edit <%= resource_name.to_s.humanize %> Profile</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col-lg-6">
     <div class="form-inputs"> 
       <%= f.input :email, required: true, autofocus: true %>
@@ -25,33 +25,26 @@
       </div>
     </div>
     <div class="col-lg-6">
-    <div class="avatar-upload">
-      <%= f.input :avatar,
-                  as: :file,
-                  required: true,
-                  input_html: {style: 'display:none'},
-                  image_preview: true %>
-      <label for="user_avatar">
-        <%# <i class="fa fa-upload" aria-hidden="true"></i> %>
-        <%# <img src="app/assets/images/upload_image.png"> %>
-        <% image_tag 'app/assets/images/upload_image.png'%>
-      </label>
-    </div>
-      <div>
-        <img id="your_preview_id">
-      </div> 
+      <div class="avatar-upload">
+        <%= f.input :avatar,
+                    as: :file,
+                    required: true,
+                    input_html: {style: 'display:none'},
+                    image_preview: true %>
+        <label for="user_avatar">
+          <% if current_user.avatar.attached?%>
+            <%= image_tag current_user.avatar, id: "replace_avatar_preview", class: "img-fluid rounded-circle image-center"%>
+          <%else%>
+            <%= image_tag 'upload_image.png', id: "replace_avatar_preview", class: "img-fluid rounded-circle image-center"%>
+          <%end%> 
+        </label>
+      </div>
     </div>
     <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
+      <%= f.button :submit, "Update" , class: "btn btn-primary ml-3"%>
+    </div>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 
 <script>
 function showImage(input) {
@@ -59,10 +52,8 @@ function showImage(input) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#your_preview_id')
-        .attr('src', e.target.result)
-        .width(150)
-        .height(200);
+      $('#replace_avatar_preview')
+        .attr('src', e.target.result);
     };
 
     reader.readAsDataURL(input.files[0]);
