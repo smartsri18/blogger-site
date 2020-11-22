@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :comments
   end
   match 'my_articles' => 'articles#my_articles', as: :user_root, :via => [:get, :post]
+  post '/contact_us', to: 'pages#contact_us'
 end

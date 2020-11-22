@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: contact_us_forms
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer          not null
-#  article_id :integer          not null
+#  email      :string           not null
 #  message    :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 require 'test_helper'
 
-class CommentTest < ActiveSupport::TestCase
+class ContactUsFormTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

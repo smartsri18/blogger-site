@@ -1,0 +1,21 @@
+<div class="footer-right">
+  <p>Contact Us</p>
+  <%= simple_form_for(@contact_us, url: contact_us_path ) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors.full_messages.to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :email,
+                  required: true,
+                  placeholder: "Email",
+                  label: false%>
+      <%= f.input :message,
+                  required: true,
+                  placeholder: "Message",
+                  label: false,
+                  as: :text%>
+    </div>
+    <div class="form-actions">
+      <%= f.button :button, 'Send'%>
+    </div>
+  <% end %>
+</div>
